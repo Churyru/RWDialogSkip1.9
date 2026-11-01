@@ -40,13 +40,5 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	</ItemGroup>
-		
-	<Target Name="GenerateMod" AfterTargets="PostBuildEvent" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<ItemGroup>
-			<RemovePlugins Include="../mod/newest/plugins/*.pdb" />
-		</ItemGroup>
-				
-		<Delete Files="@(RemovePlugins)" />
-	</Target>
 
 </Project>
