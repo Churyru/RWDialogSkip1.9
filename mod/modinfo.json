@@ -1,11 +1,9 @@
-﻿{
-  "id": "testmod",
-  "name": "Test Mod",
-  "version": "0.1.0",
-  "authors": "Author",
-  "description": "Put a neat description here",
-  "tags": [],
-  "requirements": [],
-  "requirements_names": [],
-  "checksum_override_version": false
+{
+	"id": "NV.MonologSkip",
+	"name": "Monolog Skip",
+	"authors": "NV",
+	"description": "Skips a single dialog phrase on jump",
+	"requirements": [],
+	"requirements_names": [],
+	"checksum_override_version": false
 }
