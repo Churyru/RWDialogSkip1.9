@@ -87,7 +87,7 @@ sealed class Plugin : BaseUnityPlugin
         if (self.hud.owner is Player player && 
             player.abstractCreature.world.game.Players.Any(abstractPlayer => 
             abstractPlayer.realizedCreature is Player p2 && 
-            (IIC_E_Compatibility.Enabled? IIC_E_Compatibility.CheckRawPressed(p2.playerState.playerNumber) : p2.input[p2.playerState.playerNumber].jmp) && 
+            (IIC_E_Compatibility.Enabled ? IIC_E_Compatibility.CheckRawPressed(p2.playerState.playerNumber) : p2.input[0].jmp) && 
             counter == 0))
         {
             if (self.CurrentMessage != null)

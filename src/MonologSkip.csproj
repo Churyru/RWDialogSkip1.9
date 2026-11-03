@@ -8,10 +8,6 @@
 		<PathMap>$(MSBuildProjectDirectory)=/$(SolutionName)</PathMap>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<Lib>$(MSBuildProjectDirectory)\..\lib</Lib>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DebugType>portable</DebugType>
 	</PropertyGroup>
@@ -27,24 +23,4 @@
 	  </PackageReference>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Reference Include="BepInEx">
-	    <HintPath>$(Lib)\BepInEx.dll</HintPath>
-	  </Reference>
-	  <Reference Include="HOOKS-Assembly-CSharp">
-	    <HintPath>$(Lib)\HOOKS-Assembly-CSharp.dll</HintPath>
-	  </Reference>
-	  <Reference Include="ImprovedInput">
-	    <HintPath>$(Lib)\ImprovedInput.dll</HintPath>
-	  </Reference>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>$(Lib)\PUBLIC-Assembly-CSharp.dll</HintPath>
-	  </Reference>
-	  <Reference Include="UnityEngine">
-	    <HintPath>$(Lib)\UnityEngine.dll</HintPath>
-	  </Reference>
-	  <Reference Include="UnityEngine.CoreModule">
-	    <HintPath>$(Lib)\UnityEngine.CoreModule.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
 </Project>
