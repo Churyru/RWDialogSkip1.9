@@ -9,11 +9,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<SteamPath>$([MSBuild]::GetRegistryValue('HKEY_CURRENT_USER\Software\Valve\Steam', 'SteamPath'))</SteamPath>
-		<LibraryFoldersVdf>$(SteamPath)\config\libraryfolders.vdf</LibraryFoldersVdf>
-		<LibraryFoldersContent>$([System.IO.File]::ReadAllText('$(LibraryFoldersVdf)'))</LibraryFoldersContent>
-		<RWLibrary>$([System.Text.RegularExpressions.Regex]::Match('$(LibraryFoldersContent)', '(?s)"\d+"\s*\{(?:(?!\n\s*"\d+"\s*\{).)*?"path"\s*"([^"]+)"(?:(?!\n\s*"\d+"\s*\{).)*?"312520"').Groups[1].Value.Replace('\\','\'))</RWLibrary>
-		<RainWorldDir>$(RWLibrary)\steamapps\common\Rain World</RainWorldDir>
+		<Lib>$(MSBuildProjectDirectory)\..\lib</Lib>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,22 +29,22 @@
 
 	<ItemGroup>
 	  <Reference Include="BepInEx">
-	    <HintPath>$(RainWorldDir)\BepInEx\core\BepInEx.dll</HintPath>
+	    <HintPath>$(Lib)\BepInEx.dll</HintPath>
 	  </Reference>
 	  <Reference Include="HOOKS-Assembly-CSharp">
-	    <HintPath>$(RainWorldDir)\BepInEx\plugins\HOOKS-Assembly-CSharp.dll</HintPath>
+	    <HintPath>$(Lib)\HOOKS-Assembly-CSharp.dll</HintPath>
 	  </Reference>
 	  <Reference Include="ImprovedInput">
-	    <HintPath>$(RWLibrary)\steamapps\workshop\content\312520\3458119961\plugins\ImprovedInput.dll</HintPath>
+	    <HintPath>$(Lib)\ImprovedInput.dll</HintPath>
 	  </Reference>
 	  <Reference Include="Assembly-CSharp">
-	    <HintPath>$(RainWorldDir)\BepInEx\utils\PUBLIC-Assembly-CSharp.dll</HintPath>
+	    <HintPath>$(Lib)\PUBLIC-Assembly-CSharp.dll</HintPath>
 	  </Reference>
 	  <Reference Include="UnityEngine">
-	    <HintPath>$(RainWorldDir)\RainWorld_Data\Managed\UnityEngine.dll</HintPath>
+	    <HintPath>$(Lib)\UnityEngine.dll</HintPath>
 	  </Reference>
 	  <Reference Include="UnityEngine.CoreModule">
-	    <HintPath>$(RainWorldDir)\RainWorld_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+	    <HintPath>$(Lib)\UnityEngine.CoreModule.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 </Project>
