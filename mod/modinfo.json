@@ -2,8 +2,7 @@
 	"id": "NV.MonologSkip",
 	"name": "Monolog Skip",
 	"authors": "NV, Churyru",
-	"description": "Skips a single phrase on selected key",
-  "requirements": ["improved-input-config"],
-  "requirements_names": ["Improved Input Config: Extended"],
+	"description": "Skips a single phrase on jump or selected key (with Improved Input Config: Extended)",
+  "priorities": ["improved-input-config"],
 	"checksum_override_version": false
 }
