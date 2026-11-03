@@ -8,6 +8,14 @@
 		<PathMap>$(MSBuildProjectDirectory)=/$(SolutionName)</PathMap>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<SteamPath>$([MSBuild]::GetRegistryValue('HKEY_CURRENT_USER\Software\Valve\Steam', 'SteamPath'))</SteamPath>
+		<LibraryFoldersVdf>$(SteamPath)\config\libraryfolders.vdf</LibraryFoldersVdf>
+		<LibraryFoldersContent>$([System.IO.File]::ReadAllText('$(LibraryFoldersVdf)'))</LibraryFoldersContent>
+		<RWLibrary>$([System.Text.RegularExpressions.Regex]::Match('$(LibraryFoldersContent)', '(?s)"\d+"\s*\{(?:(?!\n\s*"\d+"\s*\{).)*?"path"\s*"([^"]+)"(?:(?!\n\s*"\d+"\s*\{).)*?"312520"').Groups[1].Value.Replace('\\','\'))</RWLibrary>
+		<RainWorldDir>$(RWLibrary)\steamapps\common\Rain World</RainWorldDir>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DebugType>portable</DebugType>
 	</PropertyGroup>
@@ -15,24 +23,6 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DebugType>none</DebugType>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Reference Include="../lib/*.dll">
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="$(RainWorldDir)/BepInEx/core/*.dll">
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="$(RainWorldDir)/BepInEx/plugins/*.dll">
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="$(RainWorldDir)/BepInEx/utils/*.dll">
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="$(RainWorldDir)/RainWorld_Data/Managed/Unity*.dll">
-			<Private>false</Private>
-		</Reference>
-	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="PolySharp" Version="1.15.0">
@@ -43,22 +33,22 @@
 
 	<ItemGroup>
 	  <Reference Include="BepInEx">
-	    <HintPath>D:\SteamLibrary\steamapps\common\Rain World\BepInEx\core\BepInEx.dll</HintPath>
+	    <HintPath>$(RainWorldDir)\BepInEx\core\BepInEx.dll</HintPath>
 	  </Reference>
 	  <Reference Include="HOOKS-Assembly-CSharp">
-	    <HintPath>D:\SteamLibrary\steamapps\common\Rain World\BepInEx\plugins\HOOKS-Assembly-CSharp.dll</HintPath>
+	    <HintPath>$(RainWorldDir)\BepInEx\plugins\HOOKS-Assembly-CSharp.dll</HintPath>
 	  </Reference>
 	  <Reference Include="ImprovedInput">
-	    <HintPath>D:\SteamLibrary\steamapps\workshop\content\312520\3458119961\plugins\ImprovedInput.dll</HintPath>
+	    <HintPath>$(RWLibrary)\steamapps\workshop\content\312520\3458119961\plugins\ImprovedInput.dll</HintPath>
 	  </Reference>
 	  <Reference Include="Assembly-CSharp">
-	    <HintPath>D:\SteamLibrary\steamapps\common\Rain World\BepInEx\utils\PUBLIC-Assembly-CSharp.dll</HintPath>
+	    <HintPath>$(RainWorldDir)\BepInEx\utils\PUBLIC-Assembly-CSharp.dll</HintPath>
 	  </Reference>
 	  <Reference Include="UnityEngine">
-	    <HintPath>D:\SteamLibrary\steamapps\common\Rain World\RainWorld_Data\Managed\UnityEngine.dll</HintPath>
+	    <HintPath>$(RainWorldDir)\RainWorld_Data\Managed\UnityEngine.dll</HintPath>
 	  </Reference>
 	  <Reference Include="UnityEngine.CoreModule">
-	    <HintPath>D:\SteamLibrary\steamapps\common\Rain World\RainWorld_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+	    <HintPath>$(RainWorldDir)\RainWorld_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 </Project>
